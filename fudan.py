@@ -25,14 +25,11 @@ class Fudan:
         r = self.c.post(
             config.uis_url,
             params={'service': service_url},
-            headers={
-                'Host': 'uis.fudan.edu.cn',
-                'Origin': 'https://uis.fudan.edu.cn',
-            },
             data=data,
             allow_redirects=False
         )
-
+        print(r.request.headers)
+        print(r.headers)
         assert service_url + '?ticket' in r.headers['location'], '登录失败'
 
     def close(self, logout_url):
@@ -85,3 +82,8 @@ class Fudan:
         gpas.reverse()
         percentage = (gpas.index(gpa) + 1) / len(gpas) * 100
         return '我的绩点为：{}\n专业排名为：{:.1f}%'.format(gpa, percentage)
+
+if __name__ == '__main__':
+    c = Fudan(config.username, config.password)
+    c.login(config.jwfw_url)
+    c.close(config.jwfw_logout_url)
