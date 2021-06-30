@@ -1,4 +1,5 @@
 config*
 test*
+result.txt
 .idea
 *.lock
