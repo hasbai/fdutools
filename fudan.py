@@ -10,8 +10,8 @@ class Fudan:
         self.username = username
         self.password = password
 
-    def login(self, service_url):
-        r = self.c.get(config.uis_url, params={'service': service_url})
+    def login(self):
+        r = self.c.get(config.uis_url)
         assert r.status_code == 200, '网络错误'
 
         data = {
@@ -24,22 +24,16 @@ class Fudan:
 
         r = self.c.post(
             config.uis_url,
-            params={'service': service_url},
             data=data,
             allow_redirects=False
         )
-        print(r.request.headers)
-        print(r.headers)
-        assert service_url + '?ticket' in r.headers['location'], '登录失败'
+        assert r.status_code == 302, '登录失败'
 
-    def close(self, logout_url):
-        r = self.c.get(logout_url)
+    def close(self):
+        r = self.c.get(config.logout_url)
         self.c.close()
         # response_url = str(r.url)
         # assert config.uis_url in response_url, '{} is not in {}'.format(config.uis_url, response_url)
-
-    # def close(self):
-    #     self.c.close()
 
     def get_grade(self, semester_id):
         r = self.c.get('https://jwfw.fudan.edu.cn/eams/teach/grade/course/person!search.action',
@@ -85,5 +79,5 @@ class Fudan:
 
 if __name__ == '__main__':
     c = Fudan(config.username, config.password)
-    c.login(config.jwfw_url)
-    c.close(config.jwfw_logout_url)
+    c.login()
+    c.close()

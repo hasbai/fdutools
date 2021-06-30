@@ -6,13 +6,13 @@ from fudan import Fudan
 def grade_report():
     try:
         c = Fudan(config.username, config.password)
-        c.login(config.jwfw_url)
+        c.login()
         grades = c.get_grade(config.semester_id)
         gpa_report = c.get_gpa()
     except Exception as e:
         print(e)
     finally:
-        c.close(config.jwfw_logout_url)
+        c.close()
 
     try:
         with open('result.txt', 'r') as file:
