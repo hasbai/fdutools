@@ -3,3 +3,4 @@ test*
 result.txt
 .idea
 *.lock
+__pycache__
