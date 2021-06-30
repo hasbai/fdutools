@@ -1,4 +1,3 @@
-from lxml import etree
 from bs4 import BeautifulSoup
 import httpx
 import config
@@ -15,15 +14,13 @@ class Fudan:
         r = self.c.get(config.uis_url, params={'service': service_url})
         assert r.status_code == 200, '网络错误'
 
-        html = etree.HTML(r.text, etree.HTMLParser())
         data = {
             'username': self.username,
             'password': self.password,
         }
-        data.update(zip(
-            html.xpath("/html/body/form/input/@name"),
-            html.xpath("/html/body/form/input/@value")
-        ))
+        soup = BeautifulSoup(r.text, features='lxml')
+        for item in soup.find_all(name='input', attrs={'type': 'hidden'}):
+            data[item['name']] = item['value']
 
         r = self.c.post(
             config.uis_url,

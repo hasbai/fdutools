@@ -22,10 +22,10 @@ def grade_report():
             file.write('0')
         grades_num = 0
 
-    if grades_num != len(grades):
-        [print(grade) for grade in grades]
-        print(gpa_report)
+    [print(grade) for grade in grades]
+    print(gpa_report)
 
+    if grades_num != len(grades):
         content = ''
         for s in grades:
             content = content + s + '\r\n'
