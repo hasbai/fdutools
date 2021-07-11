@@ -1,5 +1,0 @@
-optype: false
-operator0: 684964:false
-captcha_response: blwr
-
-PTSS110087.11
