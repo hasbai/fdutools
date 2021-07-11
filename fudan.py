@@ -86,7 +86,9 @@ class Fudan:
     def close(self):
         r = self.c.get(self.logout_url)
         if r.status_code == 200:
-            print('已登出')
+            print('[I] 已登出')
+        else:
+            print('[W] 登出失败！')
         self.c.close()
 
     def get_grade(self, semester_id):
