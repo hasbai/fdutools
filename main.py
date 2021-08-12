@@ -2,7 +2,7 @@ import json
 
 import config
 import utils
-from fudan import Grade
+from grade import Grade
 
 
 def grade_report(user, send_email=True):
