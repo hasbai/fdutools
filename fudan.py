@@ -7,7 +7,6 @@ import httpx
 import demjson
 from bs4 import BeautifulSoup
 import prettytable as pt
-import numpy as np
 
 import config
 
@@ -166,7 +165,7 @@ class Xk(Fudan):
         selected_courses = demjson.decode(text)  # dict
 
         # 生成课表
-        array = np.full((14, 7), '', dtype='object')  # numpy
+        array = [[''] * 7 for i in range(14)]
         for course in selected_courses:
             start_unit = course['arrangeInfo'][0]['startUnit']
             end_unit = course['arrangeInfo'][0]['endUnit']
@@ -222,8 +221,8 @@ if __name__ == '__main__':
     try:
         c.login()
         c.get_xk()
-        _course_id = c.query_course('ECON130223.01')
-        c.operate_course(_course_id, 'select')
+        # _course_id = c.query_course('ECON130223.01')
+        # c.operate_course(_course_id, 'select')
         c.show_courses_table()
 
     except Exception as e:

@@ -9,7 +9,6 @@ lxml = "*"
 beautifulsoup4 = "*"
 demjson = "*"
 prettytable = "*"
-numpy = "*"
 
 [dev-packages]
 
