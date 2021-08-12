@@ -46,15 +46,13 @@ class Client(httpx.Client):
 
 
 class Fudan:
-    def __init__(self, username, password, xk=False):
+    def __init__(self, username, password):
         self.username = username
         self.password = password
 
         self.ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/91.0.4472.114 Safari/537.36'
-        self.xk = xk
-
-        self.login_url = 'https://xk.fudan.edu.cn/xk/login.action' if xk else 'https://uis.fudan.edu.cn/authserver/login'
-        self.logout_url = 'https://xk.fudan.edu.cn/xk/logout.action' if xk else 'https://uis.fudan.edu.cn/authserver/logout'
+        self.login_url = 'https://uis.fudan.edu.cn/authserver/login'
+        self.logout_url = 'https://uis.fudan.edu.cn/authserver/logout'
 
         self.profile_id = 0
 
@@ -66,15 +64,12 @@ class Fudan:
             'password': self.password,
         }
 
-        if self.xk:
-            pass
-        else:
-            r = self.c.get(self.login_url)
-            assert r.status_code == 200, '网络错误'
+        r = self.c.get(self.login_url)
+        assert r.status_code == 200, '网络错误'
 
-            soup = BeautifulSoup(r.text, features='lxml')
-            for item in soup.find_all(name='input', attrs={'type': 'hidden'}):
-                data[item['name']] = item['value']
+        soup = BeautifulSoup(r.text, features='lxml')
+        for item in soup.find_all(name='input', attrs={'type': 'hidden'}):
+            data[item['name']] = item['value']
 
         r = self.c.post(
             self.login_url,
@@ -91,6 +86,8 @@ class Fudan:
             print('[W] 登出失败！')
         self.c.close()
 
+
+class Grade(Fudan):
     def get_grade(self, semester_id):
         grade_url = 'https://jwfw.fudan.edu.cn/eams/teach/grade/course/person!search.action'
         r = self.c.get(grade_url, params={'semesterId': semester_id})
@@ -127,6 +124,26 @@ class Fudan:
         gpas.reverse()
         percentage = (gpas.index(gpa) + 1) / len(gpas) * 100
         return '我的绩点为：{}\n专业排名为：{:.1f}%'.format(gpa, percentage)
+
+
+class Xk(Fudan):
+    def __init__(self, username, password):
+        super().__init__(username, password)
+        self.login_url = 'https://xk.fudan.edu.cn/xk/login.action'
+        self.logout_url = 'https://xk.fudan.edu.cn/xk/logout.action'
+
+    def login(self):
+        data = {
+            'username': self.username,
+            'password': self.password,
+        }
+
+        r = self.c.post(
+            self.login_url,
+            data=data,
+            allow_redirects=False
+        )
+        assert r.status_code == 302, '登录失败'
 
     def get_xk(self):
         xk_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!defaultPage.action'
@@ -201,16 +218,16 @@ class Fudan:
 
 
 if __name__ == '__main__':
-    c = Fudan(config.username, config.password, xk=True)
+    c = Xk(config.username, config.password)
     try:
         c.login()
         c.get_xk()
-        c.show_courses_table()
-        _course_id = c.query_course('PTSS110087.11')
+        _course_id = c.query_course('ECON130223.01')
         c.operate_course(_course_id, 'select')
-        c.operate_course(_course_id, 'drop')
+        c.show_courses_table()
+
     except Exception as e:
-        traceback.print_exc()
+        # traceback.print_exc()
         print('[E] {}'.format(e))
     finally:
         c.close()

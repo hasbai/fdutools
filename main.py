@@ -2,16 +2,16 @@ import json
 
 import config
 import utils
-from fudan import Fudan
+from fudan import Grade
 
 
-def grade_report(user):
+def grade_report(user, send_email=True):
     username = user['username']
     password = user['password']
     email = user['email']
 
     try:
-        c = Fudan(username, password)
+        c = Grade(username, password)
         c.login()
         grades = c.get_grade(config.semester_id)
         gpa_report = c.get_gpa()
@@ -20,8 +20,12 @@ def grade_report(user):
     finally:
         c.close()
 
+    print(username)
     [print(grade) for grade in grades]
     print(gpa_report)
+
+    if not send_email:
+        return
 
     try:
         with open('result.json', 'r') as file:
@@ -35,7 +39,7 @@ def grade_report(user):
 
     if grade_nums[username] != len(grades):
         grade_nums[username] = len(grades)
-        content = '\r\n'.join(grades) + gpa_report
+        content = username + '\r\n' + '\r\n'.join(grades) + gpa_report
         utils.send_email('考试成绩快报', content, [email])
 
         with open('result.json', 'w') as file:
@@ -44,4 +48,4 @@ def grade_report(user):
 
 if __name__ == '__main__':
     for user in config.users:
-        grade_report(user)
+        grade_report(user, send_email=False)
