@@ -9,6 +9,8 @@ lxml = "*"
 beautifulsoup4 = "*"
 demjson = "*"
 prettytable = "*"
+pymysql = "*"
+cryptography = "*"
 
 [dev-packages]
 
