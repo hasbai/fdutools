@@ -1,5 +1,5 @@
 name: Deploy
-on: [push]
+on: [ push ]
 jobs:
   push:
     runs-on: ubuntu-latest
@@ -17,3 +17,13 @@ jobs:
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
+
+      - name: Install Environment
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          script: |
+            cd ${{ secrets.TARGET }}
+            pipenv install
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
