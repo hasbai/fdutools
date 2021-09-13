@@ -19,8 +19,8 @@ def repeated_login(func):
             args[1] = new_url
             return func(*args, **kwargs)
         elif '请不要过快点击' in r.text:
-            print('[W] 请求过于频繁，0.5s 后再次请求')
-            time.sleep(0.5)
+            print('[W] 请求过于频繁，0.2s 后再次请求')
+            time.sleep(0.2)
             return func(*args, **kwargs)
         else:
             return r
