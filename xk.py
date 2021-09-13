@@ -22,7 +22,7 @@ class Xk(Fudan):
 
         # 实例化时自动登录
         self.login()
-        self.get_xk()
+        self.init_xk()
 
     def login(self):
         data = {
@@ -37,7 +37,7 @@ class Xk(Fudan):
         )
         assert r.status_code == 302, '登录失败'
 
-    def get_xk(self):
+    def init_xk(self):
         xk_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!defaultPage.action'
 
         # 获取 profile_id
@@ -53,7 +53,7 @@ class Xk(Fudan):
         r = self.c.post(xk_url, data=data)
         assert r.status_code == 200, '访问选课页面失败！'
 
-    def show_courses_table(self):
+    def class_schedule(self):
         # 获取已选课程
         query_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!queryLesson.action'
         r = self.c.get(query_course_url, params={'profileId': self.profile_id})
@@ -82,28 +82,42 @@ class Xk(Fudan):
         image = Image.open(bytes_buffer)
         image.show()
 
-    def query_course(self, course_no):
-        def search_course_id(_courses, _course_no):
-            for course in _courses:
-                if course['no'] == _course_no:
-                    return course['id']
-            raise Exception('没有找到这门课！{}'.format(_course_no))
-
-        query_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!queryLesson.action'
-        r = self.c.post(
-            query_course_url,
-            params={'profileId': self.profile_id},
-            data={'lessonNo': course_no, 'courseCode': '', 'courseName': ''}
-        )
-        assert r.status_code == 200, '查询课程失败！'
-        text = re.search(r'\[.*]', r.text).group()
-        courses = demjson.decode(text)  # dict
-        return search_course_id(courses, course_no)
-
     def operate_course(self, course_no, mode='select'):
-        print('开始选课')
+        """
+        Args:
+            course_no: 唯一课程 id （例：FORE110068.01）
+            mode: select 或 drop
 
-        course_id = self.query_course(course_no)
+        Returns: Boolean
+        """
+
+        def query_course_id(course_no):
+            """
+            Args:
+                course_no: 唯一课程 id （例：FORE110068.01）
+
+            Returns:
+                内部课程 id，用于选课
+            """
+
+            def search_course_id(_courses, _course_no):
+                for course in _courses:
+                    if course['no'] == _course_no:
+                        return course['id']
+                raise Exception('没有找到这门课！{}'.format(_course_no))
+
+            query_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!queryLesson.action'
+            r = self.c.post(
+                query_course_url,
+                params={'profileId': self.profile_id},
+                data={'lessonNo': course_no, 'courseCode': '', 'courseName': ''}
+            )
+            assert r.status_code == 200, '查询课程失败！'
+            text = re.search(r'\[.*]', r.text).group()
+            courses = demjson.decode(text)  # dict
+            return search_course_id(courses, course_no)
+
+        course_id = query_course_id(course_no)
         operate_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!batchOperator.action'
         data = {'optype': 'true', 'operator0': '{}:true:0'.format(course_id)} \
             if mode == 'select' else \
@@ -122,23 +136,30 @@ class Xk(Fudan):
         print(suffix + ' ' + message)
         return is_success
 
-    def captcha(self):
-        captcha_url = 'https://xk.fudan.edu.cn/xk/captcha/image.action'
-        r = self.c.get(captcha_url)
-        image = Image.open(BytesIO(r.content))
-        image.show()
+    def select(self, course_no):
+        return self.operate_course(course_no, mode='select')
 
-        result = input('请输入验证码（不区分大小写）')
-        return result
+    def drop(self, course_no):
+        return self.operate_course(course_no, mode='drop')
 
-    def main(self, course_id):
+    # 验证码疑似由前端控制
+    # def captcha(self):
+    #     captcha_url = 'https://xk.fudan.edu.cn/xk/captcha/image.action'
+    #     r = self.c.get(captcha_url)
+    #     image = Image.open(BytesIO(r.content))
+    #     image.show()
+    #
+    #     result = input('请输入验证码（不区分大小写）')
+    #     return result
+
+    def main(self, course_no):
         try:
             is_success = False
             while not is_success:
-                is_success = self.operate_course(course_id, 'select')
-            # self.operate_course(course_id, 'drop')
-            self.show_courses_table()
-            
+                is_success = self.select(course_no)
+            self.drop(course_no)
+            self.class_schedule()
+
         except Exception as e:
             print('[E] {}'.format(e))
         finally:
