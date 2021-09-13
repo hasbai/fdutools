@@ -20,6 +20,10 @@ class Xk(Fudan):
 
         self.profile_id = 0
 
+        # 实例化时自动登录
+        self.login()
+        self.get_xk()
+
     def login(self):
         data = {
             'username': self.username,
@@ -97,6 +101,8 @@ class Xk(Fudan):
         return search_course_id(courses, course_no)
 
     def operate_course(self, course_no, mode='select'):
+        print('开始选课')
+
         course_id = self.query_course(course_no)
         operate_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!batchOperator.action'
         data = {'optype': 'true', 'operator0': '{}:true:0'.format(course_id)} \
@@ -110,10 +116,11 @@ class Xk(Fudan):
         )
         soup = BeautifulSoup(r.text, features='lxml')
         message = re.sub(r'\s', '', soup.body.get_text())
-        print(message)
 
-        assertion_message = '选课失败！' if mode == 'select' else '退课失败！'
-        assert '成功' in message, assertion_message
+        is_success = '成功' in message
+        suffix = '[I]' if is_success else '[E]'
+        print(suffix + ' ' + message)
+        return is_success
 
     def captcha(self):
         captcha_url = 'https://xk.fudan.edu.cn/xk/captcha/image.action'
@@ -126,12 +133,12 @@ class Xk(Fudan):
 
     def main(self, course_id):
         try:
-            self.login()
-            self.get_xk()
-            self.operate_course(course_id, 'drop')
-            self.operate_course(course_id, 'select')
+            is_success = False
+            while not is_success:
+                is_success = self.operate_course(course_id, 'select')
+            # self.operate_course(course_id, 'drop')
             self.show_courses_table()
-
+            
         except Exception as e:
             print('[E] {}'.format(e))
         finally:
@@ -141,12 +148,3 @@ class Xk(Fudan):
 if __name__ == '__main__':
     xk = Xk(config.username, config.password)
     xk.main('FORE110068.01')
-
-    # try:
-    #     xk.login()
-    #     xk.captcha()
-    # except Exception as e:
-    #     traceback.print_exc()
-    #     print('[E] {}'.format(e))
-    # finally:
-    #     xk.close()
