@@ -84,5 +84,5 @@ class Pafd(Fudan):
 
 
 if __name__ == '__main__':
-    c = Pafd(config.username, config.password)
-    print(c.main())
+    pafd = Pafd(config.username, config.password)
+    print(pafd.main())
