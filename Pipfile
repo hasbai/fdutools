@@ -8,11 +8,15 @@ httpx = "*"
 lxml = "*"
 beautifulsoup4 = "*"
 demjson = "*"
-prettytable = "*"
 pymysql = "*"
 cryptography = "*"
+pillow = "*"
+pandas = "*"
+dataframe-image = "*"
+nbformat = "*"
+matplotlib = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3.9"

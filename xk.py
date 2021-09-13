@@ -1,7 +1,11 @@
 import re
+import time
+from io import BytesIO
 
+import dataframe_image as dfi
 import demjson
-import prettytable
+import pandas as pd
+from PIL import Image
 from bs4 import BeautifulSoup
 
 import config
@@ -37,8 +41,12 @@ class Xk(Fudan):
         soup = BeautifulSoup(r.text, features='lxml')
         tag = soup.find(name='input', attrs={'type': 'hidden'})
         self.profile_id = tag['value']
+
+        time.sleep(0.2)  # 等待 0.2s
+
+        # 需要先访问选课页面才能获得已选课程
         data = {tag['name']: tag['value']}
-        r = self.c.post(xk_url, data=data)  # 需要先访问选课页面才能获得已选课程
+        r = self.c.post(xk_url, data=data)
         assert r.status_code == 200, '访问选课页面失败！'
 
     def show_courses_table(self):
@@ -59,10 +67,16 @@ class Xk(Fudan):
                 array[i][weekday - 1] = course['name']
 
         # 打印课表
-        table = prettytable.PrettyTable(['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'])
-        for row in array:
-            table.add_row(row)
-        print(table)
+        df = pd.DataFrame(
+            data=array,
+            columns=['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
+            index=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+        )
+
+        bytes_buffer = BytesIO()
+        dfi.export(df.style, bytes_buffer)
+        image = Image.open(bytes_buffer)
+        image.show()
 
     def query_course(self, course_no):
         def search_course_id(_courses, _course_no):
@@ -82,7 +96,8 @@ class Xk(Fudan):
         courses = demjson.decode(text)  # dict
         return search_course_id(courses, course_no)
 
-    def operate_course(self, course_id, mode='select'):
+    def operate_course(self, course_no, mode='select'):
+        course_id = self.query_course(course_no)
         operate_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!batchOperator.action'
         data = {'optype': 'true', 'operator0': '{}:true:0'.format(course_id)} \
             if mode == 'select' else \
@@ -100,18 +115,38 @@ class Xk(Fudan):
         assertion_message = '选课失败！' if mode == 'select' else '退课失败！'
         assert '成功' in message, assertion_message
 
+    def captcha(self):
+        captcha_url = 'https://xk.fudan.edu.cn/xk/captcha/image.action'
+        r = self.c.get(captcha_url)
+        image = Image.open(BytesIO(r.content))
+        image.show()
+
+        result = input('请输入验证码（不区分大小写）')
+        return result
+
+    def main(self, course_id):
+        try:
+            self.login()
+            self.get_xk()
+            self.operate_course(course_id, 'drop')
+            self.operate_course(course_id, 'select')
+            self.show_courses_table()
+
+        except Exception as e:
+            print('[E] {}'.format(e))
+        finally:
+            self.close()
+
 
 if __name__ == '__main__':
-    c = Xk(config.username, config.password)
-    try:
-        c.login()
-        c.get_xk()
-        # _course_id = c.query_course('ECON130223.01')
-        # c.operate_course(_course_id, 'select')
-        c.show_courses_table()
+    xk = Xk(config.username, config.password)
+    xk.main('FORE110068.01')
 
-    except Exception as e:
-        # traceback.print_exc()
-        print('[E] {}'.format(e))
-    finally:
-        c.close()
+    # try:
+    #     xk.login()
+    #     xk.captcha()
+    # except Exception as e:
+    #     traceback.print_exc()
+    #     print('[E] {}'.format(e))
+    # finally:
+    #     xk.close()
