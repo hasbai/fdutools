@@ -1,6 +1,7 @@
 import re
 import time
 from io import BytesIO
+from threading import Thread
 
 import dataframe_image as dfi
 import demjson
@@ -152,15 +153,42 @@ class Xk(Fudan):
     #     result = input('请输入验证码（不区分大小写）')
     #     return result
 
-
-if __name__ == '__main__':
-    success = False
-    while not success:
-        # 每个 session 的第一次选课不需要验证码，故每次操作都实例化一次
-        xk = Xk(config.username, config.password)
+    def main(self, course):
+        flag = False
         try:
-            success = xk.select(config.course_no)
+            flag = self.select(course)
         except Exception as e:
             print('[E] {}'.format(e))
         finally:
-            xk.close()
+            self.close()
+        return flag
+
+
+def main(username, password, courses):
+    flags = [False for i in range(len(courses))]
+    while True:
+        for i in range(len(courses)):
+            if flags[i]:
+                continue
+            # 每个 session 的第一次选课不需要验证码，故每次操作都实例化一次
+            xk = Xk(username, password)
+            flags[i] = xk.main(courses[i])
+        success = True
+        for flag in flags:
+            success = success and flag
+        if success:
+            break
+
+
+if __name__ == '__main__':
+    thread_pool = []
+    for user in config.users:
+        username = user.get('username', '')
+        password = user.get('password', '')
+        courses = user.get('courses', [])
+        thread = Thread(target=main, args=(username, password, courses))
+        thread.name = username
+        thread_pool.append(thread)
+        thread.start()
+    for thread in thread_pool:
+        thread.join()
