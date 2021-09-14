@@ -36,6 +36,7 @@ class Xk(Fudan):
             allow_redirects=False
         )
         assert r.status_code == 302, '登录失败'
+        print('[I] 已登录')
 
     def init_xk(self):
         xk_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!defaultPage.action'
@@ -132,7 +133,7 @@ class Xk(Fudan):
         message = re.sub(r'\s', '', soup.body.get_text())
 
         is_success = '成功' in message
-        suffix = '[I]' if is_success else '[E]'
+        suffix = '[I]' if is_success else '[W]'
         print(suffix + ' ' + message)
         return is_success
 
@@ -142,7 +143,6 @@ class Xk(Fudan):
     def drop(self, course_no):
         return self.operate_course(course_no, mode='drop')
 
-    # 验证码疑似由前端控制
     # def captcha(self):
     #     captcha_url = 'https://xk.fudan.edu.cn/xk/captcha/image.action'
     #     r = self.c.get(captcha_url)
@@ -152,20 +152,15 @@ class Xk(Fudan):
     #     result = input('请输入验证码（不区分大小写）')
     #     return result
 
-    def main(self, course_no):
-        try:
-            is_success = False
-            while not is_success:
-                is_success = self.select(course_no)
-            self.drop(course_no)
-            self.class_schedule()
 
+if __name__ == '__main__':
+    success = False
+    while not success:
+        # 每个 session 的第一次选课不需要验证码，故每次操作都实例化一次
+        xk = Xk(config.username, config.password)
+        try:
+            success = xk.select(config.course_no)
         except Exception as e:
             print('[E] {}'.format(e))
         finally:
-            self.close()
-
-
-if __name__ == '__main__':
-    xk = Xk(config.username, config.password)
-    xk.main('FORE110068.01')
+            xk.close()

@@ -68,6 +68,7 @@ class Fudan:
             allow_redirects=False
         )
         assert r.status_code == 302, '登录失败'
+        print('[I] 已登录')
 
     def close(self):
         r = self.c.get(self.logout_url)
