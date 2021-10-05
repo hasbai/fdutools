@@ -84,6 +84,32 @@ class Xk(Fudan):
         image = Image.open(bytes_buffer)
         image.show()
 
+    def query_course_id(self, course_no):
+        """
+        Args:
+            course_no: 唯一课程 id （例：FORE110068.01）
+
+        Returns:
+            内部课程 id，用于选课
+        """
+
+        def search_course_id(_courses, _course_no):
+            for course in _courses:
+                if course['no'] == _course_no:
+                    return course['id']
+            raise Exception('没有找到这门课！{}'.format(_course_no))
+
+        query_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!queryLesson.action'
+        r = self.c.post(
+            query_course_url,
+            params={'profileId': self.profile_id},
+            data={'lessonNo': course_no, 'courseCode': '', 'courseName': ''}
+        )
+        assert r.status_code == 200, '查询课程失败！'
+        text = re.search(r'\[.*]', r.text).group()
+        courses = demjson.decode(text)  # dict
+        return search_course_id(courses, course_no)
+
     def operate_course(self, course_no, mode='select'):
         """
         Args:
@@ -92,34 +118,7 @@ class Xk(Fudan):
 
         Returns: Boolean
         """
-
-        def query_course_id(course_no):
-            """
-            Args:
-                course_no: 唯一课程 id （例：FORE110068.01）
-
-            Returns:
-                内部课程 id，用于选课
-            """
-
-            def search_course_id(_courses, _course_no):
-                for course in _courses:
-                    if course['no'] == _course_no:
-                        return course['id']
-                raise Exception('没有找到这门课！{}'.format(_course_no))
-
-            query_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!queryLesson.action'
-            r = self.c.post(
-                query_course_url,
-                params={'profileId': self.profile_id},
-                data={'lessonNo': course_no, 'courseCode': '', 'courseName': ''}
-            )
-            assert r.status_code == 200, '查询课程失败！'
-            text = re.search(r'\[.*]', r.text).group()
-            courses = demjson.decode(text)  # dict
-            return search_course_id(courses, course_no)
-
-        course_id = query_course_id(course_no)
+        course_id = self.query_course_id(course_no)
         operate_course_url = 'https://xk.fudan.edu.cn/xk/stdElectCourse!batchOperator.action'
         data = {'optype': 'true', 'operator0': '{}:true:0'.format(course_id)} \
             if mode == 'select' else \
@@ -135,7 +134,7 @@ class Xk(Fudan):
 
         is_success = '成功' in message
         suffix = '[I]' if is_success else '[W]'
-        print(suffix + ' ' + message)
+        print(f'{suffix} {self.username}: {message}')
         return is_success
 
     def select(self, course_no):
@@ -153,26 +152,31 @@ class Xk(Fudan):
     #     result = input('请输入验证码（不区分大小写）')
     #     return result
 
-    def main(self, course):
-        flag = False
-        try:
-            flag = self.select(course)
-        except Exception as e:
-            print('[E] {}'.format(e))
-        finally:
-            self.close()
-        return flag
+
+def simple_select(username, password, course):
+    success = False
+    try:
+        # 每个 session 的第一次选课不需要验证码，故每次操作都实例化一次
+        xk = Xk(username, password)
+        success = xk.select(course)
+        xk.close()
+    except Exception as e:
+        print(f'[E] {e}')
+    finally:
+        return success
 
 
 def main(username, password, courses):
     flags = [False for i in range(len(courses))]
+
+    # 主循环
     while True:
         for i in range(len(courses)):
             if flags[i]:
                 continue
-            # 每个 session 的第一次选课不需要验证码，故每次操作都实例化一次
-            xk = Xk(username, password)
-            flags[i] = xk.main(courses[i])
+            flags[i] = simple_select(username, password, courses[i])
+
+        # 退出条件
         success = True
         for flag in flags:
             success = success and flag
