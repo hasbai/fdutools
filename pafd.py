@@ -75,11 +75,11 @@ class Pafd(Fudan):
         try:
             self.login()
             self.submit()
+            self.close()
         except Exception as e:
             self.message += '[E] {}'.format(e)
             self.code = -1
         finally:
-            self.close()
             return {'message': self.message, 'code': self.code}
 
 
