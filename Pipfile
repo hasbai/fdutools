@@ -15,6 +15,7 @@ pandas = "*"
 dataframe-image = "*"
 nbformat = "*"
 matplotlib = "*"
+easyocr = "*"
 
 [dev-packages]
 
