@@ -2,7 +2,7 @@ import pymysql
 
 from config import db_host, db_port, db_name, db_user, db_password, email
 from pafd import Pafd
-from utils import send_email
+from utils.email import send_email
 
 
 def fetch_data():

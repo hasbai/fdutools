@@ -6,8 +6,8 @@ from io import StringIO
 import demjson
 
 import config
-from captcha import recognize
 from fudan import Fudan
+from utils.captcha import recognize
 
 MAX_CAPTCHA_RETRY = 5
 
@@ -110,4 +110,5 @@ class Pafd(Fudan):
 
 if __name__ == '__main__':
     pafd = Pafd(config.username, config.password)
-    print(pafd.main())
+    result = pafd.main()
+    print(result['message'], result['code'])
