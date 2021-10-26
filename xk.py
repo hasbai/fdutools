@@ -33,8 +33,7 @@ class Xk(Fudan):
 
         r = self.c.post(
             self.login_url,
-            data=data,
-            allow_redirects=False
+            data=data
         )
         assert r.status_code == 302, '登录失败'
         print('[I] 已登录')
