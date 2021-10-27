@@ -1,5 +1,9 @@
 name: Deploy
-on: [ push ]
+on:
+  push:
+    tags:
+      - v*.*.*
+      - v*.*.*-*
 jobs:
   push:
     runs-on: ubuntu-latest
@@ -23,7 +27,7 @@ jobs:
         with:
           script: |
             cd ${{ secrets.TARGET }}
-            pipenv install
+            poetry install
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}

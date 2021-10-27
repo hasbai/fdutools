@@ -4,7 +4,20 @@
 - 选课
 - 成绩查询
 
-## 平安复旦自动填写
+## Get started
+
+本项目使用 `poetry` 包管理工具，详见 https://python-poetry.org/docs/
+
+安装虚拟环境与依赖
+
+```shell
+poetry install
+poetry shell
+```
+
+## Features
+
+### 平安复旦自动填写
 
 参考了 https://github.com/k652/daily_fudan
 
@@ -31,7 +44,7 @@ print(result['code'])
 '''
 ```
 
-## 选课
+### 选课
 
 原理：循环请求，抢到为止
 
@@ -39,7 +52,7 @@ print(result['code'])
 
 使用：在 config.py 中填写好相应配置（见下文）后运行 xk.py 即可
 
-## 成绩查询
+### 成绩查询
 
 - 考试成绩
 - 绩点排名
