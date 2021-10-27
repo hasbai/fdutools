@@ -5,6 +5,10 @@ description = "Useful tools for FDU students"
 authors = ["hasbai <jsclndnz@outlook.com>"]
 license = "Apache"
 
+[[tool.poetry.source]]
+name = "tuna"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+
 [tool.poetry.dependencies]
 python = ">=3.7.1"
 httpx = "^0.20.0"
