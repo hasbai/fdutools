@@ -73,7 +73,6 @@ class Pafd(Fudan):
                 'https://zlapp.fudan.edu.cn/ncov/wap/fudan/save',
                 data=self.form_data
             )
-            print(r.content)
             error = r.json()['e'] != 0
             message = r.json()["m"]
             if error:
