@@ -248,8 +248,8 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 reference = "tuna"
 
 [[package]]
-name = "demjson"
-version = "2.2.4"
+name = "demjson3"
+version = "3.0.5"
 description = "encoder, decoder, and lint/validator for JSON (JavaScript Object Notation) compliant with RFC 7159"
 category = "main"
 optional = false
@@ -890,7 +890,7 @@ reference = "tuna"
 
 [[package]]
 name = "pyparsing"
-version = "3.0.2"
+version = "3.0.3"
 description = "Python parsing module"
 category = "main"
 optional = false
@@ -1329,7 +1329,7 @@ reference = "tuna"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1"
-content-hash = "d2e16ccaab1f669530aa6b5dd14fd5acc0553b027d4fc411e5fcdeb8b0dee67f"
+content-hash = "7bd9802fffd4beb1f0080d45e1b6b1a3ba942cbd5ecdec6ee968f79c3ef6ef2a"
 
 [metadata.files]
 aiohttp = [
@@ -1489,8 +1489,8 @@ defusedxml = [
     {file = "defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61"},
     {file = "defusedxml-0.7.1.tar.gz", hash = "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69"},
 ]
-demjson = [
-    {file = "demjson-2.2.4.tar.gz", hash = "sha256:31de2038a0fdd9c4c11f8bf3b13fe77bc2a128307f965c8d5fb4dc6d6f6beb79"},
+demjson3 = [
+    {file = "demjson3-3.0.5.tar.gz", hash = "sha256:ab9aabdd85695f3684fc296f39766a2730f6c8de81d23f7048073dfe2f616d80"},
 ]
 easyocr = [
     {file = "easyocr-1.4.1-py3-none-any.whl", hash = "sha256:695e2d9c220282bf97794816dc380c157083ce5f1a9e19e1c2ca2217ecaa1820"},
@@ -1981,8 +1981,8 @@ pymysql = [
     {file = "PyMySQL-1.0.2.tar.gz", hash = "sha256:816927a350f38d56072aeca5dfb10221fe1dc653745853d30a216637f5d7ad36"},
 ]
 pyparsing = [
-    {file = "pyparsing-3.0.2-py3-none-any.whl", hash = "sha256:09fa60a2e3bc3c6a23c2ed23332199d0e57b2c676b9193750cfc22a4358b69c2"},
-    {file = "pyparsing-3.0.2.tar.gz", hash = "sha256:9366e57ad2d2faa8dd89775ef284ecae0fc4012c24717f3705613b262d712090"},
+    {file = "pyparsing-3.0.3-py3-none-any.whl", hash = "sha256:f8d3fe9fc404576c5164f0f0c4e382c96b85265e023c409c43d48f65da9d60d0"},
+    {file = "pyparsing-3.0.3.tar.gz", hash = "sha256:9e3511118010f112a4b4b435ae50e1eaa610cda191acb9e421d60cf5fde83455"},
 ]
 pyrsistent = [
     {file = "pyrsistent-0.18.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:f4c8cabb46ff8e5d61f56a037974228e978f26bfefce4f61a4b1ac0ba7a2ab72"},

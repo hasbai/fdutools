@@ -4,7 +4,7 @@ from io import BytesIO
 from threading import Thread
 
 import dataframe_image as dfi
-import demjson
+import demjson3
 import pandas as pd
 from PIL import Image
 from bs4 import BeautifulSoup
@@ -60,7 +60,7 @@ class Xk(Fudan):
         r = self.c.get(query_course_url, params={'profileId': self.profile_id})
         assert r.status_code == 200, '查询课表失败！'
         text = re.search(r'\[.*]', r.text).group()
-        selected_courses = demjson.decode(text)  # dict
+        selected_courses = demjson3.decode(text)  # dict
 
         # 生成课表
         array = [[''] * 7 for i in range(14)]
@@ -106,7 +106,7 @@ class Xk(Fudan):
         )
         assert r.status_code == 200, '查询课程失败！'
         text = re.search(r'\[.*]', r.text).group()
-        courses = demjson.decode(text)  # dict
+        courses = demjson3.decode(text)  # dict
         return search_course_id(courses, course_no)
 
     def operate_course(self, course_no, mode='select'):

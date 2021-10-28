@@ -3,7 +3,7 @@ import time
 import traceback
 from io import StringIO
 
-import demjson
+import demjson3
 
 import config
 from fudan import Fudan
@@ -33,7 +33,7 @@ class Pafd(Fudan):
 
         date = last_info["date"]
         today = time.strftime("%Y%m%d", time.localtime())
-        address = demjson.decode(last_info['geo_api_info'])['formattedAddress']
+        address = demjson3.decode(last_info['geo_api_info'])['formattedAddress']
         message = "  日期：{}，地址：{}".format(date, address)
 
         if date == today and not self.has_submitted:
@@ -55,7 +55,7 @@ class Pafd(Fudan):
         if not self.form_data:
             return
 
-        address = demjson.decode(self.form_data["geo_api_info"])["addressComponent"]
+        address = demjson3.decode(self.form_data["geo_api_info"])["addressComponent"]
         province = address.get("province", "")
         district = address.get("district", "")
         city = address.get("city", "") or province  # 防止缺少 city 字段报错
