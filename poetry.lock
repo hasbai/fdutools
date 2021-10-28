@@ -7,15 +7,20 @@ optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-async-timeout = ">=3.0,<4.0"
+async_timeout = ">=3.0,<4.0"
 attrs = ">=17.3.0"
 chardet = ">=2.0,<5.0"
 multidict = ">=4.5,<7.0"
-typing-extensions = ">=3.6.5"
+typing_extensions = ">=3.6.5"
 yarl = ">=1.0,<2.0"
 
 [package.extras]
 speedups = ["aiodns", "brotlipy", "cchardet"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "anyio"
@@ -35,6 +40,11 @@ doc = ["sphinx-rtd-theme", "sphinx-autodoc-typehints (>=1.2.0)"]
 test = ["coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "pytest (>=6.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (<0.15)", "mock (>=4)", "uvloop (>=0.15)"]
 trio = ["trio (>=0.16)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "async-timeout"
 version = "3.0.1"
@@ -42,6 +52,11 @@ description = "Timeout context manager for asyncio programs"
 category = "main"
 optional = false
 python-versions = ">=3.5.3"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "attrs"
@@ -56,6 +71,11 @@ dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", 
 docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "beautifulsoup4"
@@ -72,6 +92,11 @@ soupsieve = ">1.2"
 html5lib = ["html5lib"]
 lxml = ["lxml"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "bleach"
 version = "4.1.0"
@@ -85,6 +110,11 @@ packaging = "*"
 six = ">=1.9.0"
 webencodings = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "certifi"
 version = "2021.10.8"
@@ -92,6 +122,11 @@ description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "cffi"
@@ -104,6 +139,11 @@ python-versions = "*"
 [package.dependencies]
 pycparser = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "chardet"
 version = "4.0.0"
@@ -111,6 +151,11 @@ description = "Universal encoding detector for Python 2 and 3"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "charset-normalizer"
@@ -122,6 +167,11 @@ python-versions = ">=3.5.0"
 
 [package.extras]
 unicode_backport = ["unicodedata2"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "cryptography"
@@ -142,6 +192,11 @@ sdist = ["setuptools_rust (>=0.11.4)"]
 ssh = ["bcrypt (>=3.1.5)"]
 test = ["pytest (>=6.2.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pretend", "iso8601", "pytz", "hypothesis (>=1.11.4,!=3.79.2)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "cycler"
 version = "0.10.0"
@@ -152,6 +207,11 @@ python-versions = "*"
 
 [package.dependencies]
 six = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "dataframe-image"
@@ -169,6 +229,11 @@ nbconvert = ">=5"
 pandas = ">=0.24"
 requests = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "defusedxml"
 version = "0.7.1"
@@ -177,6 +242,11 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "demjson"
 version = "2.2.4"
@@ -184,6 +254,11 @@ description = "encoder, decoder, and lint/validator for JSON (JavaScript Object 
 category = "main"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "easyocr"
@@ -204,6 +279,11 @@ scipy = "*"
 torch = "*"
 torchvision = ">=0.5"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "entrypoints"
 version = "0.3"
@@ -212,6 +292,11 @@ category = "main"
 optional = false
 python-versions = ">=2.7"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "h11"
 version = "0.12.0"
@@ -219,6 +304,11 @@ description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "httpcore"
@@ -235,6 +325,11 @@ sniffio = ">=1.0.0,<2.0.0"
 
 [package.extras]
 http2 = ["h2 (>=3,<5)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "httpx"
@@ -256,6 +351,11 @@ brotli = ["brotlicffi", "brotli"]
 cli = ["click (>=8.0.0,<9.0.0)", "rich (>=10.0.0,<11.0.0)", "pygments (>=2.0.0,<3.0.0)"]
 http2 = ["h2 (>=3,<5)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "idna"
 version = "3.3"
@@ -263,6 +363,11 @@ description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
 python-versions = ">=3.5"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "imageio"
@@ -283,6 +388,11 @@ full = ["astropy", "gdal", "imageio-ffmpeg", "itk"]
 gdal = ["gdal"]
 itk = ["itk"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "importlib-metadata"
 version = "4.8.1"
@@ -300,6 +410,11 @@ docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 perf = ["ipython"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "ipython-genutils"
 version = "0.2.0"
@@ -307,6 +422,11 @@ description = "Vestigial utilities from IPython"
 category = "main"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "jinja2"
@@ -321,6 +441,11 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "jsonschema"
@@ -338,6 +463,11 @@ pyrsistent = ">=0.14.0,<0.17.0 || >0.17.0,<0.17.1 || >0.17.1,<0.17.2 || >0.17.2"
 [package.extras]
 format = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3987", "uri-template", "webcolors (>=1.11)"]
 format_nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3986-validator (>0.1.0)", "uri-template", "webcolors (>=1.11)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "jupyter-client"
@@ -360,6 +490,11 @@ traitlets = "*"
 doc = ["myst-parser", "sphinx (>=1.3.6)", "sphinx-rtd-theme", "sphinxcontrib-github-alt"]
 test = ["codecov", "coverage", "ipykernel", "ipython", "mock", "mypy", "pre-commit", "pytest", "pytest-asyncio", "pytest-cov", "pytest-timeout", "jedi (<0.18)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "jupyter-core"
 version = "4.9.0"
@@ -372,6 +507,11 @@ python-versions = ">=3.6"
 pywin32 = {version = ">=1.0", markers = "sys_platform == \"win32\" and platform_python_implementation != \"PyPy\""}
 traitlets = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "jupyterlab-pygments"
 version = "0.1.2"
@@ -383,6 +523,11 @@ python-versions = "*"
 [package.dependencies]
 pygments = ">=2.4.1,<3"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "kiwisolver"
 version = "1.3.2"
@@ -390,6 +535,11 @@ description = "A fast implementation of the Cassowary constraint solver"
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "lxml"
@@ -405,6 +555,11 @@ html5 = ["html5lib"]
 htmlsoup = ["beautifulsoup4"]
 source = ["Cython (>=0.29.7)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "markupsafe"
 version = "2.0.1"
@@ -412,6 +567,11 @@ description = "Safely add untrusted strings to HTML/XML markup."
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "matplotlib"
@@ -429,6 +589,11 @@ pillow = ">=6.2.0"
 pyparsing = ">=2.2.1"
 python-dateutil = ">=2.7"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "mistune"
 version = "0.8.4"
@@ -437,6 +602,11 @@ category = "main"
 optional = false
 python-versions = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "multidict"
 version = "5.2.0"
@@ -444,6 +614,11 @@ description = "multidict implementation"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "nbclient"
@@ -463,6 +638,11 @@ traitlets = ">=4.2"
 dev = ["codecov", "coverage", "ipython", "ipykernel", "ipywidgets", "pytest (>=4.1)", "pytest-cov (>=2.6.1)", "check-manifest", "flake8", "mypy", "tox", "bumpversion", "xmltodict", "pip (>=18.1)", "wheel (>=0.31.0)", "setuptools (>=38.6.0)", "twine (>=1.11.0)", "black"]
 sphinx = ["Sphinx (>=1.7)", "sphinx-book-theme", "mock", "moto", "myst-parser"]
 test = ["codecov", "coverage", "ipython", "ipykernel", "ipywidgets", "pytest (>=4.1)", "pytest-cov (>=2.6.1)", "check-manifest", "flake8", "mypy", "tox", "bumpversion", "xmltodict", "pip (>=18.1)", "wheel (>=0.31.0)", "setuptools (>=38.6.0)", "twine (>=1.11.0)", "black"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "nbconvert"
@@ -494,6 +674,11 @@ serve = ["tornado (>=4.0)"]
 test = ["pytest", "pytest-cov", "pytest-dependency", "ipykernel", "ipywidgets (>=7)", "pyppeteer (==0.2.6)"]
 webpdf = ["pyppeteer (==0.2.6)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "nbformat"
 version = "5.1.3"
@@ -512,6 +697,11 @@ traitlets = ">=4.1"
 fast = ["fastjsonschema"]
 test = ["check-manifest", "fastjsonschema", "testpath", "pytest", "pytest-cov"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "nest-asyncio"
 version = "1.5.1"
@@ -519,6 +709,11 @@ description = "Patch asyncio to allow nested event loops"
 category = "main"
 optional = false
 python-versions = ">=3.5"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "networkx"
@@ -535,6 +730,11 @@ doc = ["sphinx (>=4.0,<5.0)", "pydata-sphinx-theme (>=0.6,<1.0)", "sphinx-galler
 extra = ["lxml (>=4.5)", "pygraphviz (>=1.7)", "pydot (>=1.4.1)"]
 test = ["pytest (>=6.2)", "pytest-cov (>=2.12)", "codecov (>=2.1)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "numpy"
 version = "1.21.1"
@@ -543,16 +743,26 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "opencv-python-headless"
-version = "4.5.3.56"
+version = "4.5.4.58"
 description = "Wrapper package for OpenCV python bindings."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-numpy = ">=1.21.0"
+numpy = ">=1.19.3"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "packaging"
@@ -564,6 +774,11 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 pyparsing = ">=2.0.2"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "pandas"
@@ -586,6 +801,11 @@ pytz = ">=2017.3"
 [package.extras]
 test = ["hypothesis (>=3.58)", "pytest (>=6.0)", "pytest-xdist"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pandocfilters"
 version = "1.5.0"
@@ -593,6 +813,11 @@ description = "Utilities for writing pandoc filters in python"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "pillow"
@@ -602,6 +827,11 @@ category = "main"
 optional = false
 python-versions = ">=3.6"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "py"
 version = "1.10.0"
@@ -609,6 +839,11 @@ description = "library with cross-python path, ini-parsing, io, code, log facili
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "pycparser"
@@ -618,6 +853,11 @@ category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pygments"
 version = "2.10.0"
@@ -625,6 +865,11 @@ description = "Pygments is a syntax highlighting package written in Python."
 category = "main"
 optional = false
 python-versions = ">=3.5"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "pymysql"
@@ -638,6 +883,11 @@ python-versions = ">=3.6"
 ed25519 = ["PyNaCl (>=1.4.0)"]
 rsa = ["cryptography"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pyparsing"
 version = "3.0.2"
@@ -649,6 +899,11 @@ python-versions = ">=3.6"
 [package.extras]
 diagrams = ["jinja2", "railroad-diagrams"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pyrsistent"
 version = "0.18.0"
@@ -656,6 +911,11 @@ description = "Persistent/Functional/Immutable data structures"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "python-bidi"
@@ -668,6 +928,11 @@ python-versions = "*"
 [package.dependencies]
 six = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "python-dateutil"
 version = "2.8.2"
@@ -679,6 +944,11 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 [package.dependencies]
 six = ">=1.5"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pytz"
 version = "2021.3"
@@ -686,6 +956,11 @@ description = "World timezone definitions, modern and historical"
 category = "main"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "pywavelets"
@@ -698,6 +973,11 @@ python-versions = ">=3.5"
 [package.dependencies]
 numpy = ">=1.13.3"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pywin32"
 version = "302"
@@ -706,6 +986,11 @@ category = "main"
 optional = false
 python-versions = "*"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "pyyaml"
 version = "6.0"
@@ -713,6 +998,11 @@ description = "YAML parser and emitter for Python"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "pyzmq"
@@ -725,6 +1015,11 @@ python-versions = ">=3.6"
 [package.dependencies]
 cffi = {version = "*", markers = "implementation_name == \"pypy\""}
 py = {version = "*", markers = "implementation_name == \"pypy\""}
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "requests"
@@ -744,6 +1039,11 @@ urllib3 = ">=1.21.1,<1.27"
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "rfc3986"
 version = "1.5.0"
@@ -757,6 +1057,11 @@ idna = {version = "*", optional = true, markers = "extra == \"idna2008\""}
 
 [package.extras]
 idna2008 = ["idna"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "scikit-image"
@@ -782,6 +1087,11 @@ docs = ["sphinx (>=1.8,<=2.4.4)", "sphinx-gallery (>=0.7.0,!=0.8.0)", "numpydoc 
 optional = ["simpleitk", "astropy (>=3.1.2)", "qtpy", "pyamg", "dask[array] (>=1.0.0,!=2.17.0)", "cloudpickle (>=0.2.1)", "pooch (>=1.3.0)"]
 test = ["pytest (>=5.2.0)", "pytest-cov (>=2.7.0)", "pytest-localserver", "pytest-faulthandler", "flake8", "codecov", "pooch (>=1.3.0)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "scipy"
 version = "1.6.1"
@@ -793,6 +1103,11 @@ python-versions = ">=3.7"
 [package.dependencies]
 numpy = ">=1.16.5"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "six"
 version = "1.16.0"
@@ -800,6 +1115,11 @@ description = "Python 2 and 3 compatibility utilities"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "sniffio"
@@ -809,6 +1129,11 @@ category = "main"
 optional = false
 python-versions = ">=3.5"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "soupsieve"
 version = "2.2.1"
@@ -816,6 +1141,11 @@ description = "A modern CSS selector implementation for Beautiful Soup."
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "testpath"
@@ -827,6 +1157,11 @@ python-versions = ">= 3.5"
 
 [package.extras]
 test = ["pytest", "pathlib2"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "tifffile"
@@ -842,6 +1177,11 @@ numpy = ">=1.15.1"
 [package.extras]
 all = ["imagecodecs (>=2021.7.30)", "matplotlib (>=3.2)", "lxml"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "torch"
 version = "1.10.0"
@@ -852,6 +1192,11 @@ python-versions = ">=3.6.2"
 
 [package.dependencies]
 typing-extensions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "torchvision"
@@ -869,6 +1214,11 @@ torch = "1.10.0"
 [package.extras]
 scipy = ["scipy"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "tornado"
 version = "6.1"
@@ -876,6 +1226,11 @@ description = "Tornado is a Python web framework and asynchronous networking lib
 category = "main"
 optional = false
 python-versions = ">= 3.5"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "traitlets"
@@ -888,6 +1243,11 @@ python-versions = ">=3.7"
 [package.extras]
 test = ["pytest"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "typing-extensions"
 version = "3.10.0.2"
@@ -895,6 +1255,11 @@ description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "main"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "urllib3"
@@ -908,6 +1273,11 @@ python-versions = "*"
 secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "webencodings"
 version = "0.5.1"
@@ -915,6 +1285,11 @@ description = "Character encoding aliases for legacy web content"
 category = "main"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
 
 [[package]]
 name = "yarl"
@@ -929,6 +1304,11 @@ idna = ">=2.0"
 multidict = ">=4.0"
 typing-extensions = {version = ">=3.7.4", markers = "python_version < \"3.8\""}
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [[package]]
 name = "zipp"
 version = "3.6.0"
@@ -941,10 +1321,15 @@ python-versions = ">=3.6"
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+reference = "tuna"
+
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1"
-content-hash = "4d8e747c167a64a4ea1d47c56e54aa247443d4ed7190dc4dd53e18d817c4345e"
+content-hash = "d2e16ccaab1f669530aa6b5dd14fd5acc0553b027d4fc411e5fcdeb8b0dee67f"
 
 [metadata.files]
 aiohttp = [
@@ -1481,30 +1866,36 @@ numpy = [
     {file = "numpy-1.21.1.zip", hash = "sha256:dff4af63638afcc57a3dfb9e4b26d434a7a602d225b42d746ea7fe2edf1342fd"},
 ]
 opencv-python-headless = [
-    {file = "opencv-python-headless-4.5.3.56.tar.gz", hash = "sha256:3308d22efec8a69932709fc76456ef7e0d1cd9eb2272d94b7e5df0674d3e324f"},
-    {file = "opencv_python_headless-4.5.3.56-cp36-cp36m-macosx_10_15_x86_64.whl", hash = "sha256:b563106e93525bd30072a27448cc2b5c11e45bf6025e74e1d40efd5349a31736"},
-    {file = "opencv_python_headless-4.5.3.56-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:ecd84834f58daf94d3a4874a11997180380ef9af11b1fd5f81dbb8599b3c3446"},
-    {file = "opencv_python_headless-4.5.3.56-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:0ef768d119a00eb6be0ba7953ab875218084d078db564af89af2b3891b6d7a3b"},
-    {file = "opencv_python_headless-4.5.3.56-cp36-cp36m-win32.whl", hash = "sha256:d70f3a44fb25f555da36e6c242cd1dffac6c4637eb900584f2a70a46e8e3cf05"},
-    {file = "opencv_python_headless-4.5.3.56-cp36-cp36m-win_amd64.whl", hash = "sha256:3599939dc61ab32c91cb2dbfd80a8199b53bf8a08cbb636ee9c2f27d74fe4f8f"},
-    {file = "opencv_python_headless-4.5.3.56-cp37-cp37m-macosx_10_15_x86_64.whl", hash = "sha256:3b1aa94894872e17a5fa07794562d8c44add78dd4c90a12fa1d946789e088784"},
-    {file = "opencv_python_headless-4.5.3.56-cp37-cp37m-macosx_11_0_arm64.whl", hash = "sha256:fc9fa0fa88423c0e74db52fe13939aa506789f924a2a879e31f1d415e39a0db2"},
-    {file = "opencv_python_headless-4.5.3.56-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:90686bd1292972ad47298154c8ad37543080b2fc0417b68a350d30232b77f670"},
-    {file = "opencv_python_headless-4.5.3.56-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:c54ad51bfc4623de287bd68f14f481f72300bd16a2d9e14850c1ef1a2dfc7dca"},
-    {file = "opencv_python_headless-4.5.3.56-cp37-cp37m-win32.whl", hash = "sha256:fd0f0629e27d97eec2f51500afbe0845876fdcd89d412035f4d7beb618c51066"},
-    {file = "opencv_python_headless-4.5.3.56-cp37-cp37m-win_amd64.whl", hash = "sha256:b224afffbc4ea21fe100824ff08a79ad1fae3088c1280b8ff815067b827e5240"},
-    {file = "opencv_python_headless-4.5.3.56-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:bfe8989ed4af5e14ef1480c89fe259f5d4bc66c5ae0e7d56d7c778ef6ebbcdf4"},
-    {file = "opencv_python_headless-4.5.3.56-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:1a00d01d8d7250d6b87c63eb7b2df1e541fdb10919c22940cc53884bb12057c9"},
-    {file = "opencv_python_headless-4.5.3.56-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:39eaae19d5fa906c7ec2db76447c0ff9df6305633493f1b86e4c0080ed1cb036"},
-    {file = "opencv_python_headless-4.5.3.56-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:e19ba664cae0bc6ad39e2fbf3b3f16c93009132f792dcb7ca0105f0cc15997ed"},
-    {file = "opencv_python_headless-4.5.3.56-cp38-cp38-win32.whl", hash = "sha256:ebfeaff7e0bb1c293008a49b2b2c033a7cec3805006a8284fa1a44ad8c30446b"},
-    {file = "opencv_python_headless-4.5.3.56-cp38-cp38-win_amd64.whl", hash = "sha256:0efe30ce934ec2ab7272143d17f68885910a715c6aeffd02973c04b3d8b99ca6"},
-    {file = "opencv_python_headless-4.5.3.56-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:0e8080dc5baf6855b663634d9c7a45732e2999bbe44aa5e4a14c15f3631998e4"},
-    {file = "opencv_python_headless-4.5.3.56-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:465b157480902ecd6b2c4c46d547e4cfdec7595177bcc612c6f4c351966a5a1e"},
-    {file = "opencv_python_headless-4.5.3.56-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:d4c784339c366d27d0b4503a073c97a7cd78657937b3755fdbc9168a002f6409"},
-    {file = "opencv_python_headless-4.5.3.56-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:c7a1d365f2f8ce413847479a2d39bee2be6d5027119b08c4c5f6594f1f57673d"},
-    {file = "opencv_python_headless-4.5.3.56-cp39-cp39-win32.whl", hash = "sha256:0935bf569e2edc1af8bc38f00813e37b1ba63e4b2eb0dc48651f405068b8b36d"},
-    {file = "opencv_python_headless-4.5.3.56-cp39-cp39-win_amd64.whl", hash = "sha256:f1082f4f15a681b435686ed3fc0232128a222fed6792a47fae5cf081eb751ccf"},
+    {file = "opencv-python-headless-4.5.4.58.tar.gz", hash = "sha256:3e32018e65eabc9aab10c7a109be5f735cf2c3934a47025b6903dcec034d460b"},
+    {file = "opencv_python_headless-4.5.4.58-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:014e4a892f67043610521e673883da5ad98a6e61356a609c6502b9d22144f2f1"},
+    {file = "opencv_python_headless-4.5.4.58-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:01a6411eb9eecf58db3a50fa761f0527bdd2b23b884b3bea44eb57e6d06e4767"},
+    {file = "opencv_python_headless-4.5.4.58-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:a148f8bdb54e03b1d899acb95aa6d870d6f10eed037d9b4700912068f3952c32"},
+    {file = "opencv_python_headless-4.5.4.58-cp310-cp310-manylinux2014_x86_64.whl", hash = "sha256:d1735296d88e16379d001c4946c1a196b87e3c3ff4da0c10762918dded02f670"},
+    {file = "opencv_python_headless-4.5.4.58-cp310-cp310-win32.whl", hash = "sha256:1e0498bc4a39d887e84801b82df5cc943a5ae4b596511da7e69df64b263f293b"},
+    {file = "opencv_python_headless-4.5.4.58-cp310-cp310-win_amd64.whl", hash = "sha256:c8b595731b5c519daf2bf3c074ec2080eb51e8efef198a4493f930b5e4439bb0"},
+    {file = "opencv_python_headless-4.5.4.58-cp36-cp36m-macosx_10_15_x86_64.whl", hash = "sha256:dabf703efe12ec4341efd71c1dd384542e28fc49b7d2ea02f185ef22bb75a1c8"},
+    {file = "opencv_python_headless-4.5.4.58-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:113b8ce88f337ab3a1ee670b8c5afc3fbf0d8aafec7b2ee897ad5efd9926ce90"},
+    {file = "opencv_python_headless-4.5.4.58-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:d73972a62d3e48ee01783d4eee01152c93348c70305c91f85fb668ddcc8907ad"},
+    {file = "opencv_python_headless-4.5.4.58-cp36-cp36m-win32.whl", hash = "sha256:27b9118b342dc464590ed233c7f468c8cb68ee0e5d9734d9b67fb0bc1b10abd6"},
+    {file = "opencv_python_headless-4.5.4.58-cp36-cp36m-win_amd64.whl", hash = "sha256:807ac9d48c11b3f734d9de5eda69e1c4197204bac1e6db3d3d51859832df6fc1"},
+    {file = "opencv_python_headless-4.5.4.58-cp37-cp37m-macosx_10_15_x86_64.whl", hash = "sha256:1162de92301d0d13642afe8e163593982d3159ef21eba95a56ba3f5ca8024861"},
+    {file = "opencv_python_headless-4.5.4.58-cp37-cp37m-macosx_11_0_arm64.whl", hash = "sha256:989d4817a2f22a601707ea36a3664a6c26cee155ed441363d5f29d73d9aec610"},
+    {file = "opencv_python_headless-4.5.4.58-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:6e0757762096158b803b366c386f25f24715662465c448ed70ce65ecd93e41a2"},
+    {file = "opencv_python_headless-4.5.4.58-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:64bfc55fe60ed9ad778ec73161f0cea58e425a3f2f06293756f82880319bffa9"},
+    {file = "opencv_python_headless-4.5.4.58-cp37-cp37m-win32.whl", hash = "sha256:84f037ba74482548c066ad5e341f77ebcd3d08d06a540a4a1182300045b8bde8"},
+    {file = "opencv_python_headless-4.5.4.58-cp37-cp37m-win_amd64.whl", hash = "sha256:69c55e055e81a2eead40e6f2521ad27bdd11523dc0c1de5e5aea23041a0a49f0"},
+    {file = "opencv_python_headless-4.5.4.58-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:37e20b1a0c623c7e01381668b83342387798d0f32ff8a7d7f3dd0ef127eb10fa"},
+    {file = "opencv_python_headless-4.5.4.58-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:09b21c48144a9dd82e435d66ccd834f3a391a2cd2b69f787aabbc7cd3576f2f1"},
+    {file = "opencv_python_headless-4.5.4.58-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:685c41fce11c83a238ab40bd57d5b39c3fc4f87a898565cd27e4a521b5902a62"},
+    {file = "opencv_python_headless-4.5.4.58-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:540fa340b29dd86670e1f91bbcd2675df032b774f77d08909faf818696524617"},
+    {file = "opencv_python_headless-4.5.4.58-cp38-cp38-win32.whl", hash = "sha256:526417214a1cad27e3d2d064e535868ae05f5a07a0e344d54fe81078bbacfa57"},
+    {file = "opencv_python_headless-4.5.4.58-cp38-cp38-win_amd64.whl", hash = "sha256:1799ae397677bd3a68aff4eb4f5c122baf3ee73a26fe67391e0d618bd2b7d046"},
+    {file = "opencv_python_headless-4.5.4.58-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:067e4736cdc70712f43c064bfe53ba80492c20479ad3290849337f948572c392"},
+    {file = "opencv_python_headless-4.5.4.58-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:32e1f478457adeea4e1a3d6baf33310331740cceffd83a2f34e00a7e5bae6407"},
+    {file = "opencv_python_headless-4.5.4.58-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4b9fa45f1b364e7585fd4a2781565667efed49124748fb3ec2a66e40b7398338"},
+    {file = "opencv_python_headless-4.5.4.58-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:fdd80034749b8b2f211c2549293b34af691e4f90bf17b320a84b09b784275cc2"},
+    {file = "opencv_python_headless-4.5.4.58-cp39-cp39-win32.whl", hash = "sha256:bb29a911c4a67f9710b53b94766be1bb22926b98460790091d4620a534329736"},
+    {file = "opencv_python_headless-4.5.4.58-cp39-cp39-win_amd64.whl", hash = "sha256:79ca8b8feab911a80692fa3871c02526844f112e0f8bf4749f78383696cfaa4c"},
 ]
 packaging = [
     {file = "packaging-21.0-py3-none-any.whl", hash = "sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14"},
