@@ -27,6 +27,7 @@ jobs:
         with:
           script: |
             cd ${{ secrets.TARGET }}
+            export PATH=~/.poetry/bin:$PATH
             poetry install
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
