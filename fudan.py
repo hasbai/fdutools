@@ -1,3 +1,4 @@
+import os
 import time
 from functools import wraps
 
@@ -15,6 +16,13 @@ HEADERS = {
     'DNT': '1',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/91.0.4472.114 Safari/537.36'
 }
+
+
+def proxies():
+    if os.environ.get('ENV') == 'development':
+        return os.environ.get('HTTP_PROXY')
+    else:
+        return None
 
 
 def repeated_login(func):
@@ -58,7 +66,7 @@ class Fudan:
         self.login_url = 'https://uis.fudan.edu.cn/authserver/login'
         self.logout_url = 'https://uis.fudan.edu.cn/authserver/logout'
 
-        self.c = Client(headers=HEADERS)
+        self.c = Client(headers=HEADERS, proxies=proxies())
 
     def login(self):
         data = {

@@ -23,7 +23,7 @@ poetry shell
 
 - 支持验证码识别
 - 提交失败后发送邮件
-- 提供数据库支持，详见 `pafd_db.py`
+- 提供数据库支持，详见 `pafd_serve.py`
 
 ```python
 from pafd import Pafd
