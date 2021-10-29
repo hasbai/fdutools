@@ -22,12 +22,13 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
 
-      - name: Install Environment
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          script: |
-            cd ${{ secrets.TARGET }}
-            ~/.poetry/bin/poetry install
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#      TODO: 报错：找不到 poetry
+#      - name: Install Environment
+#        uses: appleboy/ssh-action@v0.1.4
+#        with:
+#          script: |
+#            cd ${{ secrets.TARGET }}
+#            poetry install
+#          host: ${{ secrets.REMOTE_HOST }}
+#          username: ${{ secrets.REMOTE_USER }}
+#          key: ${{ secrets.SSH_PRIVATE_KEY }}
