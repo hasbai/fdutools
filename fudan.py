@@ -68,6 +68,12 @@ class Fudan:
 
         self.c = Client(headers=HEADERS, proxies=proxies())
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
+
     def login(self):
         data = {
             'username': self.username,
@@ -86,12 +92,13 @@ class Fudan:
             data=data
         )
         assert r.status_code == 302, '登录失败'
-        print('[I] 已登录')
+        # print('[I] 已登录')
 
     def close(self):
         r = self.c.get(self.logout_url, timeout=10.0)  # 有时会超时
         if r.status_code == 302:
-            print('[I] 已登出')
+            # print('[I] 已登出')
+            pass
         else:
             print('[W] 登出失败！')
         self.c.close()
