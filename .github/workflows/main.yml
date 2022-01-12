@@ -27,7 +27,7 @@ jobs:
         with:
           script: |
             cd ${{ secrets.TARGET }}
-            ~/.poetry/bin/poetry install
+            /home/shi/.poetry/bin/poetry install
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
