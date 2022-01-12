@@ -69,6 +69,7 @@ class Fudan:
         self.c = Client(headers=HEADERS, proxies=proxies())
 
     def __enter__(self):
+        self.login()
         return self
 
     def __exit__(self, *args):

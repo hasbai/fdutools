@@ -22,9 +22,11 @@ class Xk(Fudan):
 
         self.profile_id = 0
 
-        # 实例化时自动登录
+    def __enter__(self):
+        # with环境下自动登录
         self.login()
         self.init_xk()
+        return self
 
     def login(self):
         data = {
