@@ -3,11 +3,15 @@ import json
 from bs4 import BeautifulSoup
 
 import config
-import utils
 from fudan import Fudan
+from utils.email import send_email
 
 
 class Grade(Fudan):
+    def __init__(self, username, password, **kwargs):
+        super().__init__(username, password)
+        self.logout_service = 'https://jwfw.fudan.edu.cn/eams/login.action'
+
     def get_grade(self, semester_id):
         grade_url = 'https://jwfw.fudan.edu.cn/eams/teach/grade/course/person!search.action'
         r = self.c.get(grade_url, params={'semesterId': semester_id}, follow_redirects=True)
@@ -47,28 +51,22 @@ class Grade(Fudan):
         return '我的绩点为：{}\n专业排名为：{:.1f}%'.format(gpa, percentage)
 
 
-def grade_report(user, send_email=True):
-    username = user['username']
-    password = user['password']
-    email = user['email']
-
-    grade = Grade(username, password)
-    grade.login()
-    grades = grade.get_grade(config.semester_id)
-    gpa_report = grade.get_gpa()
-    grade.close()
+def grade_report(username, password, email, is_send_email=True, **kwargs):
+    with Grade(username, password) as grade:
+        grades = grade.get_grade(config.semester_id)
+        gpa_report = grade.get_gpa()
 
     print(username)
     [print(grade) for grade in grades]
     print(gpa_report)
 
-    if not send_email:
+    if not is_send_email:
         return
 
     try:
         with open('result.json', 'r') as file:
             grade_nums = json.load(file)
-    except Exception:
+    except FileNotFoundError:
         pass
         grade_nums = {}
 
@@ -78,15 +76,11 @@ def grade_report(user, send_email=True):
     if grade_nums[username] != len(grades):
         grade_nums[username] = len(grades)
         content = username + '\r\n' + '\r\n'.join(grades) + gpa_report
-        utils.email.send_email('考试成绩快报', content, [email])
+        send_email('考试成绩快报', content, [email])
 
-        with open('result.json', 'w') as file:
-            json.dump(grade_nums, file)
+    with open('result.json', 'w') as file:
+        json.dump(grade_nums, file)
 
 
 if __name__ == '__main__':
-    grade = Grade(config.username, config.password)
-    grade.login()
-    print(grade.get_grade(config.semester_id))
-    print(grade.get_gpa())
-    grade.close()
+    grade_report(**config.users[0])

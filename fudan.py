@@ -65,6 +65,8 @@ class Fudan:
 
         self.login_url = 'https://uis.fudan.edu.cn/authserver/login'
         self.logout_url = 'https://uis.fudan.edu.cn/authserver/logout'
+        self.login_service = ''
+        self.logout_service = ''
 
         self.c = Client(headers=HEADERS, proxies=proxies())
 
@@ -96,7 +98,7 @@ class Fudan:
         # print('[I] 已登录')
 
     def close(self):
-        r = self.c.get(self.logout_url, timeout=10.0)  # 有时会超时
+        r = self.c.get(self.logout_url, params={'service': self.logout_service}, timeout=10.0)  # 有时会超时
         if r.status_code == 302:
             # print('[I] 已登出')
             pass
@@ -106,6 +108,5 @@ class Fudan:
 
 
 if __name__ == '__main__':
-    fd = Fudan(config.username, config.password)
-    fd.login()
-    fd.close()
+    with Fudan(config.username, config.password) as fd:
+        pass
