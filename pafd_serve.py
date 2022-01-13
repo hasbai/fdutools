@@ -7,7 +7,7 @@ import pymysql
 import config
 from config import db_host, db_port, db_name, db_user, db_password
 from pafd import Pafd
-from utils.email import send_email
+from utils.mail import send_email
 
 MAX_RETRY = 5
 

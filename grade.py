@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 import config
 from fudan import Fudan
-from utils.email import send_email
+from utils.mail import send_email
 
 
 class Grade(Fudan):
