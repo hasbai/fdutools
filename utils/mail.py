@@ -1,11 +1,11 @@
 import smtplib
 from email.mime.text import MIMEText
-from typing import Union
+from typing import Union, List
 
 import config
 
 
-def send_email(title: str, content: str, receivers: Union[list[str], str]) -> None:
+def send_email(title: str, content: str, receivers: Union[List[str], str]) -> None:
     # 设置服务器所需信息
     host = config.mail_host
     port = config.mail_port
@@ -31,4 +31,4 @@ def send_email(title: str, content: str, receivers: Union[list[str], str]) -> No
 
 
 if __name__ == '__main__':
-    send_email('test', 'hi', config.email)
+    send_email('test', 'hi', [config.email])
