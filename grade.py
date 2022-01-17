@@ -1,4 +1,4 @@
-import json
+import dbm
 
 from bs4 import BeautifulSoup
 
@@ -10,21 +10,45 @@ from utils.mail import send_email
 class Grade(Fudan):
     def __init__(self, username, password, **kwargs):
         super().__init__(username, password)
-        self.logout_service = 'https://jwfw.fudan.edu.cn/eams/login.action'
+        self.semester_id = kwargs.get('semester_id', config.semester_id)
+        try:
+            self.c.get('https://jwfw.fudan.edu.cn')
+            self.jwfw = True
+        except:
+            self.jwfw = False
 
-    def get_grade(self, semester_id):
-        grade_url = 'https://jwfw.fudan.edu.cn/eams/teach/grade/course/person!search.action'
-        r = self.c.get(grade_url, params={'semesterId': semester_id}, follow_redirects=True)
-
-        soup = BeautifulSoup(r.text, features='lxml')
+    def get_grade(self):
         result = []
-        for item in soup.tbody.children:
-            strings = list(item.stripped_strings)
-            if len(strings) > 6:
-                result.append(strings[3] + ' ' + strings[6])
+
+        if self.jwfw:  # 教务网站通道
+            grade_url = 'https://jwfw.fudan.edu.cn/eams/teach/grade/course/person!search.action'
+            r = self.c.get(grade_url, params={'semesterId': self.semester_id}, follow_redirects=True)
+            soup = BeautifulSoup(r.text, features='lxml')
+            for tr in soup.tbody.children:
+                li = list(tr.stripped_strings)
+                if len(li) > 6:
+                    result.append(li[3] + ' ' + li[6])
+
+        else:  # my.fudan.edu.cn 通道
+            grade_url = 'https://my.fudan.edu.cn/list/bks_xx_cj'
+            r = self.c.get(grade_url, follow_redirects=True)
+            soup = BeautifulSoup(r.text, features='lxml')
+            year, semester = None, None
+            for tr in soup.tbody.children:
+                li = list(tr.stripped_strings)
+                if year is None:
+                    year = li[1]
+                    semester = li[2]
+                if year != li[1] or semester != li[2]:
+                    break
+                result.append(li[3] + ' ' + li[5])
+
         return result
 
     def get_gpa(self):
+        if not self.jwfw:
+            return '教务网站不可用，无法查询绩点！'
+
         gpa_url = 'https://jwfw.fudan.edu.cn/eams/myActualGpa!search.action'
         r = self.c.get(gpa_url, follow_redirects=True)
 
@@ -53,7 +77,7 @@ class Grade(Fudan):
 
 def grade_report(username, password, email, is_send_email=True, **kwargs):
     with Grade(username, password) as grade:
-        grades = grade.get_grade(config.semester_id)
+        grades = grade.get_grade()
         gpa_report = grade.get_gpa()
 
     print(username)
@@ -62,24 +86,13 @@ def grade_report(username, password, email, is_send_email=True, **kwargs):
 
     if not is_send_email:
         return
-
-    try:
-        with open('result.json', 'r') as file:
-            grade_nums = json.load(file)
-    except FileNotFoundError:
-        pass
-        grade_nums = {}
-
-    if not grade_nums.get(username):
-        grade_nums[username] = 0
-
-    if grade_nums[username] != len(grades):
-        grade_nums[username] = len(grades)
-        content = username + '\r\n' + '\r\n'.join(grades) + gpa_report
-        send_email('考试成绩快报', content, [email])
-
-    with open('result.json', 'w') as file:
-        json.dump(grade_nums, file)
+    key = f'{username}-grade-nums'
+    with dbm.open('data/grade.db', 'c') as db:
+        grade_nums = int(db.get(key, 0))
+        if grade_nums != len(grades):
+            db[key] = str(len(grades))
+            content = f'{username}\r\n' + '\r\n'.join(grades) + f'\r\n{gpa_report}'
+            send_email('考试成绩快报', content, email)
 
 
 if __name__ == '__main__':

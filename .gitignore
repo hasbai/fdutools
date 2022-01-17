@@ -4,3 +4,4 @@ result.json
 .idea
 __pycache__
 .venv
+data
