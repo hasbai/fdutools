@@ -1,8 +1,28 @@
+import os
 import time
 from functools import wraps
 
 import httpx
 from bs4 import BeautifulSoup
+
+import config
+
+HEADERS = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+    'DNT': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/91.0.4472.114 Safari/537.36'
+}
+
+
+def proxies():
+    if os.environ.get('ENV') == 'development':
+        return os.environ.get('HTTP_PROXY')
+    else:
+        return None
 
 
 def repeated_login(func):
@@ -43,11 +63,19 @@ class Fudan:
         self.username = username
         self.password = password
 
-        self.ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/91.0.4472.114 Safari/537.36'
         self.login_url = 'https://uis.fudan.edu.cn/authserver/login'
         self.logout_url = 'https://uis.fudan.edu.cn/authserver/logout'
+        self.login_service = ''
+        self.logout_service = ''
 
-        self.c = Client(headers={'User-Agent': self.ua})
+        self.c = Client(headers=HEADERS, proxies=proxies())
+
+    def __enter__(self):
+        self.login()
+        return self
+
+    def __exit__(self, *args):
+        self.close()
 
     def login(self):
         data = {
@@ -55,7 +83,7 @@ class Fudan:
             'password': self.password,
         }
 
-        r = self.c.get(self.login_url)
+        r = self.c.get(self.login_url, timeout=10.0)
         assert r.status_code == 200, '网络错误'
 
         soup = BeautifulSoup(r.text, features='lxml')
@@ -64,16 +92,21 @@ class Fudan:
 
         r = self.c.post(
             self.login_url,
-            data=data,
-            allow_redirects=False
+            data=data
         )
         assert r.status_code == 302, '登录失败'
-        print('[I] 已登录')
+        # print('[I] 已登录')
 
     def close(self):
-        r = self.c.get(self.logout_url)
-        if r.status_code == 200:
-            print('[I] 已登出')
+        r = self.c.get(self.logout_url, params={'service': self.logout_service}, timeout=10.0)  # 有时会超时
+        if r.status_code == 302:
+            # print('[I] 已登出')
+            pass
         else:
             print('[W] 登出失败！')
         self.c.close()
+
+
+if __name__ == '__main__':
+    with Fudan(config.username, config.password) as fd:
+        pass

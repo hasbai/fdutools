@@ -1,6 +1,7 @@
-config*
-temp*
+config.*
+temp.*
 result.json
 .idea
-*.lock
 __pycache__
+.venv
+data
